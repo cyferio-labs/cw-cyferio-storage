@@ -1,0 +1,45 @@
+[package]
+name = "storage-contract"
+version = "0.2.0"
+authors = [
+  "KonradStaniec <konrad.staniec@gmail.com>",
+  "Mauro Lacy <mauro@lacy.com.es>",
+]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 1
+panic = 'abort'
+incremental = false
+overflow-checks = true
+
+[features]
+# for more explicit tests, cargo test --features=backtraces
+backtraces = ["cosmwasm-std/backtraces"]
+# use library feature to disable all instantiate/execute/query exports
+library = []
+
+[package.metadata.scripts]
+optimize = "./scripts/optimizer.sh"
+
+[dependencies]
+babylon-bindings = { git = "https://github.com/babylonlabs-io/bindings", tag = "v0.1.0" }
+cosmwasm-schema = "1.5.3"
+cosmwasm-std = "1.5.3"
+cw-storage-plus = "1.2.0"
+cw2 = "1.1.2"
+hex = "0.4.3"
+sha2 = "0.10.8"
+thiserror = { version = "1.0.57" }
+
+[dev-dependencies]
