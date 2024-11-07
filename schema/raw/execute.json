@@ -9,7 +9,16 @@
       ],
       "properties": {
         "save_data": {
-          "$ref": "#/definitions/SaveDataMsg"
+          "type": "object",
+          "required": [
+            "save_data"
+          ],
+          "properties": {
+            "save_data": {
+              "$ref": "#/definitions/SaveDataMsg"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
@@ -19,9 +28,15 @@
     "SaveDataMsg": {
       "type": "object",
       "required": [
+        "da_height",
         "data"
       ],
       "properties": {
+        "da_height": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
         "data": {
           "type": "string"
         }

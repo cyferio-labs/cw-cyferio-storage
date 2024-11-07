@@ -25,7 +25,9 @@
       "required": [
         "btc_height",
         "btc_timestamp",
+        "da_height",
         "data",
+        "data_hash",
         "saved_at_btc_epoch"
       ],
       "properties": {
@@ -35,7 +37,15 @@
         "btc_timestamp": {
           "$ref": "#/definitions/Uint64"
         },
+        "da_height": {
+          "type": "integer",
+          "format": "uint64",
+          "minimum": 0.0
+        },
         "data": {
+          "type": "string"
+        },
+        "data_hash": {
           "type": "string"
         },
         "saved_at_btc_epoch": {

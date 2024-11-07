@@ -19,7 +19,16 @@
         ],
         "properties": {
           "save_data": {
-            "$ref": "#/definitions/SaveDataMsg"
+            "type": "object",
+            "required": [
+              "save_data"
+            ],
+            "properties": {
+              "save_data": {
+                "$ref": "#/definitions/SaveDataMsg"
+              }
+            },
+            "additionalProperties": false
           }
         },
         "additionalProperties": false
@@ -29,9 +38,15 @@
       "SaveDataMsg": {
         "type": "object",
         "required": [
+          "da_height",
           "data"
         ],
         "properties": {
+          "da_height": {
+            "type": "integer",
+            "format": "uint64",
+            "minimum": 0.0
+          },
           "data": {
             "type": "string"
           }
@@ -51,7 +66,16 @@
         ],
         "properties": {
           "query_data": {
-            "$ref": "#/definitions/QueryDataMsg"
+            "type": "object",
+            "required": [
+              "query_data"
+            ],
+            "properties": {
+              "query_data": {
+                "$ref": "#/definitions/QueryDataMsg"
+              }
+            },
+            "additionalProperties": false
           }
         },
         "additionalProperties": false
@@ -61,11 +85,13 @@
       "QueryDataMsg": {
         "type": "object",
         "required": [
-          "data_hash"
+          "da_height"
         ],
         "properties": {
-          "data_hash": {
-            "type": "string"
+          "da_height": {
+            "type": "integer",
+            "format": "uint64",
+            "minimum": 0.0
           }
         },
         "additionalProperties": false
@@ -102,7 +128,9 @@
           "required": [
             "btc_height",
             "btc_timestamp",
+            "da_height",
             "data",
+            "data_hash",
             "saved_at_btc_epoch"
           ],
           "properties": {
@@ -112,7 +140,15 @@
             "btc_timestamp": {
               "$ref": "#/definitions/Uint64"
             },
+            "da_height": {
+              "type": "integer",
+              "format": "uint64",
+              "minimum": 0.0
+            },
             "data": {
+              "type": "string"
+            },
+            "data_hash": {
               "type": "string"
             },
             "saved_at_btc_epoch": {
